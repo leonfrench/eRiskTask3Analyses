@@ -18,8 +18,8 @@ unique(joined$ID)
 joined %<>% mutate(Team = if_else(grepl("CAMH", ID), "CAMH", "Other team"))
 #joined %<>% filter(variable == "AHR")
 
-ggplot(data=joined, aes(x=value)) + theme_bw() + geom_blank() +
-  geom_histogram(data = joined %>% filter(ID=="random"), fill="grey", color="grey") +
+ggplot(data=joined, aes(x=value)) +  geom_blank() + theme_bw() +
+  geom_histogram(data = joined %>% filter(ID=="random"), fill="grey") +
   #geom_histogram(data = joined %>% filter(ID!="random"), color="red", fill="red") +
   geom_vline(data = joined %>% filter(ID!="random"), aes(xintercept = value, color = Team)) +
   facet_wrap(. ~ variable, nrow = 2, scales = "free") + xlab("") + ylab("")
